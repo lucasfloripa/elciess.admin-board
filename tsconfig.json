@@ -1,8 +1,20 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "module": "commonjs",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "noEmit": true,
     "target": "es2019",
+    "lib": [
+      "DOM", "DOM.Iterable", "ESNext"
+    ],
     "esModuleInterop": true,
     "sourceMap": true,
     "rootDirs": ["src", "tests"],
