@@ -1,5 +1,7 @@
 import { RemoteAuthentication } from '@/data/usecases'
 import { HttpPostClientSpy } from '@/tests/data/mocks'
+import { mockAuthenticationCredencials } from '@/tests/domain/mocks'
+
 import faker from 'faker'
 
 type SutTypes = {
@@ -13,13 +15,10 @@ const makeSut = (url: string = faker.internet.url()): SutTypes => {
   return { sut, httpPostClientSpy }
 }
 
-describe('Data Usecase RemoteAuthentication', () => {
+describe('/data/usecases RemoteAuthentication', () => {
   test('Should call HttpPostClient with correct values', async () => {
     const url = faker.internet.url()
-    const credentials = {
-      login: faker.name.firstName(),
-      password: faker.random.word()
-    }
+    const credentials = mockAuthenticationCredencials()
     const { sut, httpPostClientSpy } = makeSut(url)
     await sut.auth(credentials)
     expect(httpPostClientSpy.url).toBe(url)
