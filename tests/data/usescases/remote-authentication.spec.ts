@@ -14,10 +14,15 @@ const makeSut = (url: string = faker.internet.url()): SutTypes => {
 }
 
 describe('Data Usecase RemoteAuthentication', () => {
-  test('Should call HttpPostClient with correct url ', async () => {
+  test('Should call HttpPostClient with correct values', async () => {
     const url = faker.internet.url()
+    const credentials = {
+      login: faker.name.firstName(),
+      password: faker.random.word()
+    }
     const { sut, httpPostClientSpy } = makeSut(url)
-    await sut.auth()
+    await sut.auth(credentials)
     expect(httpPostClientSpy.url).toBe(url)
+    expect(httpPostClientSpy.body).toBe(credentials)
   })
 })
