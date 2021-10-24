@@ -1,6 +1,6 @@
 import { Authentication } from '@/domain/usecases'
 import { HttpPostClient } from '@/data/protocols'
-import { InvalidCredentialsError, UnexpectedError } from '@/domain/errors'
+import { InvalidCredentialsError, UnexpectedError, ServerError } from '@/domain/errors'
 
 export class RemoteAuthentication {
   constructor (
@@ -19,7 +19,7 @@ export class RemoteAuthentication {
       case 401:
         throw new InvalidCredentialsError()
       case 500:
-        throw new UnexpectedError()
+        throw new ServerError()
     }
   }
 }

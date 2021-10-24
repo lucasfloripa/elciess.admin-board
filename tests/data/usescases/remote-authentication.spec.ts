@@ -1,5 +1,5 @@
 import { RemoteAuthentication } from '@/data/usecases'
-import { InvalidCredentialsError, UnexpectedError } from '@/domain/errors'
+import { InvalidCredentialsError, UnexpectedError, ServerError } from '@/domain/errors'
 import { Authentication } from '@/domain/usecases'
 import { HttpPostClientSpy } from '@/tests/data/mocks'
 import { mockAuthenticationCredencials } from '@/tests/domain/mocks'
@@ -42,12 +42,12 @@ describe('/data/usecases RemoteAuthentication', () => {
     const promise = sut.auth(mockAuthenticationCredencials())
     await expect(promise).rejects.toThrow(new InvalidCredentialsError())
   })
-  test('Should throw UnexpectError if HttpPostClient returns 500', async () => {
+  test('Should throw ServerError if HttpPostClient returns 500', async () => {
     const { sut, httpPostClientSpy } = makeSut()
     httpPostClientSpy.response = {
       statusCode: 500
     }
     const promise = sut.auth(mockAuthenticationCredencials())
-    await expect(promise).rejects.toThrow(new UnexpectedError())
+    await expect(promise).rejects.toThrow(new ServerError())
   })
 })
