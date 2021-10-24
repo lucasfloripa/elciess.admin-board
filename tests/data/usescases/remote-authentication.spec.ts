@@ -26,6 +26,14 @@ describe('/data/usecases RemoteAuthentication', () => {
     expect(httpPostClientSpy.url).toBe(url)
     expect(httpPostClientSpy.body).toBe(credentials)
   })
+  test('Should throw UnexpectError if HttpPostClient returns 400', async () => {
+    const { sut, httpPostClientSpy } = makeSut()
+    httpPostClientSpy.response = {
+      statusCode: 400
+    }
+    const promise = sut.auth(mockAuthenticationCredencials())
+    await expect(promise).rejects.toThrow(new UnexpectedError())
+  })
   test('Should throw InvalidCredentialsError if HttpPostClient returns 401', async () => {
     const { sut, httpPostClientSpy } = makeSut()
     httpPostClientSpy.response = {
@@ -34,10 +42,10 @@ describe('/data/usecases RemoteAuthentication', () => {
     const promise = sut.auth(mockAuthenticationCredencials())
     await expect(promise).rejects.toThrow(new InvalidCredentialsError())
   })
-  test('Should throw UnexpectError if HttpPostClient returns 400', async () => {
+  test('Should throw UnexpectError if HttpPostClient returns 500', async () => {
     const { sut, httpPostClientSpy } = makeSut()
     httpPostClientSpy.response = {
-      statusCode: 400
+      statusCode: 500
     }
     const promise = sut.auth(mockAuthenticationCredencials())
     await expect(promise).rejects.toThrow(new UnexpectedError())
