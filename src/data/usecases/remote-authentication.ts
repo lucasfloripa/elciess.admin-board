@@ -18,6 +18,8 @@ export class RemoteAuthentication {
         throw new UnexpectedError()
       case 401:
         throw new InvalidCredentialsError()
+      case 500:
+        throw new UnexpectedError()
     }
   }
 }
