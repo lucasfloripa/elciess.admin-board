@@ -4,3 +4,4 @@ coverage
 !src/data
 !tests/data
 .vscode
+public/js
