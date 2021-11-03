@@ -2,7 +2,8 @@ module.exports = {
   roots: ['<rootDir>/tests'],
   collectCoverageFrom: [
     '<rootDir>/src/**/*.ts',
-    '!<rootDir>/src/main/**'
+    '!<rootDir>/src/main/**',
+    '!**/*.d.ts'
   ],
   coverageDirectory: 'coverage',
   coverageProvider: 'babel',
@@ -12,6 +13,7 @@ module.exports = {
   },
   moduleNameMapper: {
     '@/tests/(.*)': '<rootDir>/tests/$1',
-    '@/(.*)': '<rootDir>/src/$1'
+    '@/(.*)': '<rootDir>/src/$1',
+    '\\.scss$': 'identity-obj-proxy'
   }
 }
