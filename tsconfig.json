@@ -5,11 +5,9 @@
     "moduleResolution": "node",
     "jsx": "react",
     "allowJs": true,
-    "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "noEmit": true,
     "target": "es2019",
     "lib": [
       "DOM", "DOM.Iterable", "ESNext"
