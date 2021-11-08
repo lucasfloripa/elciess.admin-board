@@ -12,7 +12,7 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', 'scss'],
     alias: {
-      '@': path.join(__dirname, '.')
+      '@': path.join(__dirname, 'src')
     }
   },
   module: {
@@ -37,9 +37,14 @@ module.exports = {
     }]
   },
   devServer: {
-    contentBase: './public',
-    writeToDisk: true,
-    historyApiFallback: true
+    devMiddleware: {
+      writeToDisk: true
+    },
+    static: {
+      directory: './public'
+    },
+    historyApiFallback: true,
+    port: 8080
   },
   externals: {
     react: 'React',
